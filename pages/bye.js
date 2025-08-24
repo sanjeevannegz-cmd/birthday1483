@@ -70,7 +70,7 @@ export default function Bye() {
               <div className="secret-message">
                 You just need to SMILE 😊
                 <br />
-                And if you're smiling right now, just keep it up!{" "}
+                And if you&apos;re smiling right now, just keep it up!{" "}
                 <span className="smiley" role="img" aria-label="smile">
                   😊
                 </span>
