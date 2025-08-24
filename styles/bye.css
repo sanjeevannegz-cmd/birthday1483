@@ -1,0 +1,265 @@
+/* bye.css */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #e0f7ff, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.bye-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+}
+
+/* Envelope styles - same as before */
+.envelope {
+  width: 520px;
+  height: 360px;
+  position: relative;
+  cursor: pointer;
+  perspective: 1200px;
+  margin-bottom: 30px;
+  user-select: none;
+}
+
+.envelope-front,
+.envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: #e6f0ff;
+  box-shadow: 0 8px 20px rgba(0, 102, 204, 0.3);
+  backface-visibility: hidden;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 60px;
+  box-sizing: border-box;
+  text-align: center;
+  flex-direction: column;
+  color: #004a99;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  user-select: none;
+}
+
+.envelope-front {
+  background: linear-gradient(135deg, #99c2ff 0%, #b3d1ff 100%);
+  border: 3px solid #4a90e2;
+  box-shadow:
+    inset 0 8px 14px rgba(255, 255, 255, 0.8),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  user-select: none;
+  text-shadow: 0 0 6px rgba(0, 74, 153, 0.75);
+}
+
+.envelope-back {
+  background: #f0f8ff;
+  border: 3px solid #4a90e2;
+  box-shadow:
+    inset 0 0 26px rgba(0, 102, 255, 0.3),
+    0 6px 16px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #003366;
+  transform: rotateY(180deg);
+  padding: 60px 70px;
+  user-select: text;
+  overflow-wrap: break-word;
+}
+
+.envelope.open .envelope-front {
+  transform: rotateY(180deg);
+  cursor: default;
+}
+
+.envelope.open .envelope-back {
+  transform: rotateY(0deg);
+  cursor: default;
+}
+
+.open-letter-prompt {
+  font-size: 1.6rem;
+  color: #004a99;
+  margin-bottom: 40px;
+  font-weight: 600;
+  max-width: 520px;
+  line-height: 1.5;
+  user-select: none;
+}
+
+/* Quote text styling */
+.secret-quote {
+  margin-bottom: 24px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #003366;
+}
+
+.secret-message {
+  font-size: 1.3rem;
+  color: #004080;
+  margin-bottom: 0;
+  white-space: pre-wrap;
+}
+
+.smiley {
+  font-size: 2.4rem;
+  margin-left: 8px;
+}
+
+/* Next button styling */
+.next-button {
+  background-color: #004a99;
+  color: white;
+  padding: 16px 40px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 5px 16px rgba(0, 74, 153, 0.85);
+  transition: background-color 0.3s ease;
+  user-select: none;
+  max-width: 200px;
+  font-weight: 700;
+  margin-top: 20px;
+  align-self: center;
+}
+
+.next-button:hover {
+  background-color: #003366;
+}
+
+/* Goodbye page styling */
+.goodbye-wrapper {
+  max-width: 600px;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 74, 153, 0.3);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.goodbye-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 15px;
+  color: #0a3d62;
+  text-shadow: 1px 1px 4px #aad8ff;
+}
+
+.goodbye-message {
+  font-size: 1.4rem;
+  color: #154360;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  white-space: pre-line;
+}
+
+/* Cute heart icon */
+.heart {
+  font-size: 3.6rem;
+  color: #e91e63;
+  animation: pulse 2.5s infinite;
+  margin-bottom: 30px;
+}
+
+/* Confetti container */
+.confetti-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+
+/* Confetti shapes */
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #e91e63;
+  opacity: 0.9;
+  border-radius: 2px;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.confetti-piece:nth-child(2n) {
+  background-color: #ff4081;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.confetti-piece:nth-child(3n) {
+  background-color: #f06292;
+  width: 7px;
+  height: 7px;
+  border-radius: 1.5px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .envelope {
+    width: 90vw;
+    height: 320px;
+  }
+  .open-letter-prompt {
+    font-size: 1.3rem;
+    max-width: 90vw;
+  }
+  .goodbye-wrapper {
+    max-width: 90vw;
+    padding: 30px 20px;
+  }
+  .goodbye-title {
+    font-size: 2.2rem;
+  }
+  .goodbye-message {
+    font-size: 1.1rem;
+  }
+}

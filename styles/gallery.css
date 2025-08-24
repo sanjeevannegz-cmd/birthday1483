@@ -1,0 +1,328 @@
+/* Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #e0f7ff, #ffffff);
+  color: #333;
+}
+
+/* Make sure body and html fill viewport */
+body, html {
+  height: 100%;
+}
+
+/* Confetti background layer */
+body::before {
+  content: "";
+  position: fixed; /* Use fixed for better scrolling behavior */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/confetti.png'); /* You must place a confetti.png in public folder */
+  background-repeat: repeat;
+  background-size: 150px;
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Main container with full height and flex column */
+.gallery-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* push footer bottom and header top */
+  align-items: center;
+  text-align: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header fixed to top without translucent background, now red font */
+.gallery-title {
+  font-size: 2rem;
+  margin: 0;
+  padding: 10px 15px;
+  color: red !important;  /* Changed to red */
+  font-weight: 700;
+  text-shadow: 1px 1px 4px rgba(204, 0, 0, 0.6); /* Slight red shadow */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Content grows to fill space between header and footer */
+.gallery-content {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Background text positioned absolute inside content */
+.background-text {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 6vw;
+  font-weight: bold;
+  color: rgba(0, 102, 153, 0.4);
+  pointer-events: none;
+  white-space: nowrap;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Move background text relative on small screens */
+@media (max-width: 600px) {
+  .background-text {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-bottom: 15px;
+    font-size: 8vw;
+  }
+}
+
+/* Carousel container */
+.carousel {
+  perspective: 1000px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+  min-height: 300px;
+}
+
+.carousel-track {
+  width: 200px;
+  height: 250px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  margin: 0 auto;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 119, 204, 0.3);
+  background: white;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 20px;
+}
+
+/* 3D placement for carousel items */
+.carousel-item:nth-child(1) {
+  transform: rotateY(0deg) translateZ(300px);
+}
+.carousel-item:nth-child(2) {
+  transform: rotateY(60deg) translateZ(300px);
+}
+.carousel-item:nth-child(3) {
+  transform: rotateY(120deg) translateZ(300px);
+}
+.carousel-item:nth-child(4) {
+  transform: rotateY(180deg) translateZ(300px);
+}
+.carousel-item:nth-child(5) {
+  transform: rotateY(240deg) translateZ(300px);
+}
+.carousel-item:nth-child(6) {
+  transform: rotateY(300deg) translateZ(300px);
+}
+
+@keyframes spin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-360deg); }
+}
+
+.carousel.entry .carousel-track {
+  animation: slide-in 1s ease-in-out forwards;
+}
+
+.carousel.show-rotation .carousel-track {
+  animation: spin 20s linear infinite;
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-100vw); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Footer fixed to bottom */
+.footer {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px 0;
+  background: linear-gradient(to top, #e0f7ff, #ffffff);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ahri-dialogue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  z-index: 11;
+}
+
+.ahri-image {
+  width: 80px;
+  height: auto;
+}
+
+.dialogue {
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.75);
+  color: #004466;
+  padding: 10px 15px;
+  border-radius: 12px;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 11;
+}
+
+/* Floating balloons animation */
+.balloons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  border-radius: 50% / 60%;
+  animation: floatUp 10s linear infinite;
+  opacity: 0.6;
+}
+
+/* Balloon colors and positions */
+.balloon.red { background: radial-gradient(circle, #ff8a80, #e53935); left: 5%; animation-delay: 0s;}
+.balloon.blue { background: radial-gradient(circle, #80d3ff, #3598e5); left: 25%; animation-delay: 2s;}
+.balloon.green { background: radial-gradient(circle, #aaff80, #5ae535); left: 45%; animation-delay: 4s;}
+.balloon.yellow { background: radial-gradient(circle, #ffe380, #e5b935); left: 65%; animation-delay: 6s;}
+.balloon.purple { background: radial-gradient(circle, #d380ff, #9835e5); left: 85%; animation-delay: 8s;}
+.balloon.pink { background: radial-gradient(circle, #ff80c6, #e5359a); left: 15%; animation-delay: 1s;}
+.balloon.cyan { background: radial-gradient(circle, #80fff7, #35e5e0); left: 35%; animation-delay: 3s;}
+.balloon.orange { background: radial-gradient(circle, #ffb380, #e57435); left: 55%; animation-delay: 5s;}
+.balloon.white { background: radial-gradient(circle, #ffffff, #cccccc); left: 75%; animation-delay: 7s;}
+.balloon.lime { background: radial-gradient(circle, #bfff80, #7ae535); left: 95%; animation-delay: 9s;}
+
+@keyframes floatUp {
+  0% {
+    bottom: -100px;
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(30px) translateY(10px);
+  }
+  100% {
+    bottom: 110%;
+    transform: translateX(-30px);
+  }
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 600px) {
+  .gallery-container {
+    height: 300px;
+  }
+  .carousel-track {
+    width: 160px;
+    height: 260px;
+  }
+  .carousel-item {
+    width: 160px;
+    height: 260px;
+  }
+  .background-text {
+    font-size: 8vw;
+  }
+  .gallery-title {
+    font-size: 1.6rem;
+    padding: 6px 15px;
+  }
+  .ahri-image {
+    width: 60px;
+  }
+  .dialogue {
+    font-size: 1rem;
+    max-width: 220px;
+  }
+  .next-button-wrapper {
+    position: static; /* remove absolute positioning */
+    margin-top: 20px;
+    margin-bottom: 35px;
+  }
+}
+
+.next-button-wrapper {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+
+.next-button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  background-color: #004466;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 68, 102, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+  background-color: #006699;
+}
+
+

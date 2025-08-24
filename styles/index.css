@@ -1,0 +1,61 @@
+.container {
+  background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.ahri {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  height: 140px;
+  width: auto;
+  max-width: 30vw;
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+  margin-bottom: 1rem;
+  max-width: 90vw;
+  word-wrap: break-word;
+}
+
+.message {
+  font-size: 1.3rem;
+  color: #fff;
+  max-width: 600px;
+  margin-bottom: 3rem;
+  text-shadow: 1px 1px #000;
+  line-height: 1.5;
+  padding: 0 1rem;
+}
+
+.next-btn {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  border: none;
+  background-color: #ff69b4;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.5);
+  user-select: none;
+}
+
+.next-btn:hover {
+  background-color: #ff1493;
+}
+
+/* Responsive styles omitted for brevity, add as needed */
